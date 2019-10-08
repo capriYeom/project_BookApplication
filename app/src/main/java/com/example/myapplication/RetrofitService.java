@@ -10,4 +10,10 @@ public interface RetrofitService {
 
     @GET("books/{isbn13}")
     Call<Book> getBookDetail(@Path("isbn13") String isbnNum);
+
+    @GET("search/{query}")
+    Call<RetrofitResponse> getSearchList(@Path("query") String query);
+
+    @GET("search/{query}/{page}")
+    Call<RetrofitResponse> getSearchListWithPage(@Path("query") String query, @Path("page") Integer page);
 }
