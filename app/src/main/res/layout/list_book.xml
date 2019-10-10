@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <ImageView
+        android:id="@+id/listimage_book"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="5dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TITLE"
+        android:layout_toRightOf="@+id/listimage_book"
+        android:id="@+id/listtext_title"
+        android:layout_marginLeft="5dp"
+        android:layout_toLeftOf="@+id/listtext_price"
+        android:layout_toStartOf="@+id/listtext_price"
+        android:textSize="20sp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/listimage_book" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listtext_subtitle"
+        android:layout_below="@+id/listtext_title"
+        android:layout_above="@+id/listtext_isbn"
+        android:text="subtitle"
+        android:textSize="15sp"
+        android:layout_marginLeft="5dp"
+        android:layout_toLeftOf="@+id/listtext_price"
+        android:layout_toStartOf="@+id/listtext_price"
+        android:layout_toRightOf="@+id/listimage_book"
+        android:layout_toEndOf="@+id/listimage_book"
+        android:layout_marginStart="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listtext_isbn"
+        android:text="1234567891011"
+        android:textSize="12sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/listtext_price"
+        android:layout_toStartOf="@+id/listtext_price"
+        android:layout_toRightOf="@+id/listimage_book"
+        android:layout_toEndOf="@+id/listimage_book" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        android:text="$19.99"
+        android:textSize="20sp"
+        android:id="@+id/listtext_price"/>
+
+</RelativeLayout>
