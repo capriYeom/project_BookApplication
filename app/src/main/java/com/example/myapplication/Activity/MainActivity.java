@@ -15,6 +15,7 @@ import com.example.myapplication.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_BOOK_ISBN_NUM = "EXTRA_BOOK_DETAIL_NUM";
 
     TabLayout mTabLayout;
     ViewPager mViewPager;

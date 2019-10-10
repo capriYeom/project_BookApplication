@@ -7,8 +7,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textview_title"
-        android:text="@string/title"
         android:textSize="25sp"
+        android:textStyle="bold"
         android:layout_margin="10dp"/>
 
     <TextView
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textview_subtitle"
         android:textSize="18sp"
-        android:text="@string/subtitle"
+        android:textStyle="bold|italic"
         android:layout_below="@+id/textview_title"
         android:layout_alignStart="@+id/textview_title"
         android:layout_marginTop="5dp"
@@ -45,56 +45,48 @@
             android:layout_width="wrap_content"
             android:id="@+id/textview_price"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="PRICE : $19.99"/>
+            android:layout_weight="1" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_rating"
-            android:layout_weight="1"
-            android:text="RATING : ZERO"/>
+            android:layout_weight="1" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_author"
-            android:layout_weight="1"
-            android:text="AUTHOR : CAPRI"/>
+            android:layout_weight="1" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_publisher"
-            android:layout_weight="1"
-            android:text="PUBLISHER : CAPRI"/>
+            android:layout_weight="1" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_published"
-            android:layout_weight="1"
-            android:text="YEAR : 2018"/>
+            android:layout_weight="1" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_page"
-            android:layout_weight="1"
-            android:text="PAGE : 100"/>
+            android:layout_weight="1" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_language"
-            android:layout_weight="1"
-            android:text="LANGUAGE : KR"/>
+            android:layout_weight="1" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_isbn10"
-            android:layout_weight="1"
-            android:text="ISBN10 : 1234567890"/>
+            android:layout_weight="1" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_isbn13"
             android:layout_weight="1"
-            android:text="ISBN13 : 1234567891011"/>
+        />
 
     </LinearLayout>
 
@@ -103,7 +95,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="DESCRIPTION"
         android:layout_above="@id/button_bookmark"
         android:layout_below="@+id/imageview_bookprofile"/>
 

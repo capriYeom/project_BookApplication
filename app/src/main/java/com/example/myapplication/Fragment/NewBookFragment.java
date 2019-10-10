@@ -24,6 +24,7 @@ import com.example.myapplication.Retrofit.RetrofitConnector;
 import java.util.List;
 
 public class NewBookFragment extends Fragment {
+
     RecyclerView mRecyclerView;
     BookAdapter mAdapter;
 
@@ -51,7 +52,7 @@ public class NewBookFragment extends Fragment {
             @Override
             public void onItemClick(Book book) {
                 Intent intent = new Intent(getContext(), BookDetailActivity.class);
-                intent.putExtra("EXTRA_BOOK_DETAIL_NUM", book.getIsbn13());
+                intent.putExtra(MainActivity.EXTRA_BOOK_ISBN_NUM, String.valueOf(book.getIsbn13()));
                 startActivity(intent);
             }
         });

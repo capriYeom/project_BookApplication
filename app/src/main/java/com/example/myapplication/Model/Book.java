@@ -6,11 +6,11 @@ public class Book {
     private String authors;
     private String publisher;
     private String language;
-    private String isbn10;
-    private String isbn13;
-    private String pages;
-    private String year;
-    private String rating;
+    private Integer isbn10;
+    private Long isbn13;
+    private Integer pages;
+    private Integer year;
+    private Integer rating;
     private String desc;
     private String price;
     private String image;
@@ -36,23 +36,23 @@ public class Book {
         return language;
     }
 
-    public String getIsbn10() {
+    public Integer getIsbn10() {
         return isbn10;
     }
 
-    public String getIsbn13() {
+    public Long getIsbn13() {
         return isbn13;
     }
 
-    public String getPages() {
+    public Integer getPages() {
         return pages;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public String getRating() {
+    public Integer getRating() {
         return rating;
     }
 

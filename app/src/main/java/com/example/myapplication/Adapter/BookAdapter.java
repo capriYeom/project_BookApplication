@@ -74,7 +74,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             titleView.setText(book.getTitle());
             subtitleView.setText(book.getSubtitle());
             priceView.setText(book.getPrice());
-            isbnView.setText(book.getIsbn13());
+            isbnView.setText(String.valueOf(book.getIsbn13()));
             Glide.with(context).load(book.getImage()).into(bookProfileImageView);
 
             if (listener != null) {
