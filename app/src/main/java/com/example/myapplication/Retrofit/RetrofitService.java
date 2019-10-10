@@ -1,4 +1,6 @@
-package com.example.myapplication;
+package com.example.myapplication.Retrofit;
+
+import com.example.myapplication.Model.Book;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
