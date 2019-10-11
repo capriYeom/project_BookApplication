@@ -1,7 +1,6 @@
 package com.example.myapplication.Fragment;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +47,7 @@ public class NewBookFragment extends Fragment {
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mAdapter = new BookAdapter(getContext());
-        mAdapter.setBookListener(new BookAdapter.onBookClickListener() {
+        mAdapter.setBookClickListener(new BookAdapter.OnBookClickListener() {
             @Override
             public void onItemClick(Book book) {
                 Intent intent = new Intent(getContext(), BookDetailActivity.class);

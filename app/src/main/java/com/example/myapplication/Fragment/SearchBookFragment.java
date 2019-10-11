@@ -63,7 +63,7 @@ public class SearchBookFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(manager);
         mAdapter = new BookAdapter(getContext());
-        mAdapter.setBookListener(new BookAdapter.onBookClickListener() {
+        mAdapter.setBookClickListener(new BookAdapter.OnBookClickListener() {
             @Override
             public void onItemClick(Book book) {
                 Intent intent = new Intent(getContext(), BookDetailActivity.class);

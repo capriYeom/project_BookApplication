@@ -22,7 +22,8 @@ import java.util.List;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     private Context context;
     private List<Book> mBookList;
-    private onBookClickListener mListener;
+    private OnBookClickListener mClickListener;
+    private OnBookLongClickListener mLongClickListener;
 
     public BookAdapter(Context context) {
         this.context = context;
@@ -39,7 +40,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BookAdapter.ViewHolder holder, int position) {
         Book book = mBookList.get(position);
-        holder.bind(context, book, mListener);
+        holder.bind(context, book, mClickListener);
     }
 
     @Override
@@ -53,8 +54,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void setBookListener(onBookClickListener listener) {
-        mListener = listener;
+    public void setBookClickListener(OnBookClickListener listener) {
+        mClickListener = listener;
+    }
+
+    public void setBookLongClickListener(OnBookLongClickListener listener) {
+        mLongClickListener = listener;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,7 +75,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             bookProfileImageView = (ImageView) itemView.findViewById(R.id.listimage_book);
         }
 
-        void bind(Context context, final Book book, final onBookClickListener listener) {
+        void bind(Context context, final Book book, final OnBookClickListener listener) {
             titleView.setText(book.getTitle());
             subtitleView.setText(book.getSubtitle());
             priceView.setText(book.getPrice());
@@ -88,7 +93,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         }
     }
 
-    public interface onBookClickListener {
+    public interface OnBookClickListener {
         void onItemClick(Book book);
+    }
+
+    public interface OnBookLongClickListener {
+        void onItemLongClick(Book book);
     }
 }
