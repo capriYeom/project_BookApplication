@@ -24,12 +24,17 @@ import com.example.myapplication.Retrofit.RetrofitConnector;
 
 import java.util.List;
 
+import retrofit2.Retrofit;
+
 public class SearchBookFragment extends Fragment {
 
     RecyclerView mRecyclerView;
     BookAdapter mAdapter;
     EditText mEditText;
     Button mButton;
+
+    String mCurrentKeyword;
+    boolean isLoading = false;
 
     @Nullable
     @Override
@@ -44,6 +49,7 @@ public class SearchBookFragment extends Fragment {
             public void onClick(View v) {
                 String keyword = mEditText.getText().toString();
                 if (keyword.length() > 0) {
+                    mCurrentKeyword = keyword;
                     callSearchBooks(keyword);
                 } else {
                     Toast.makeText(getContext(), "Keyword must be available." , Toast.LENGTH_SHORT).show();
@@ -60,7 +66,7 @@ public class SearchBookFragment extends Fragment {
     }
 
     private void setFragmentEnvironment() {
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        final LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(manager);
         mAdapter = new BookAdapter(getContext());
         mAdapter.setBookClickListener(new BookAdapter.OnBookClickListener() {
@@ -75,9 +81,28 @@ public class SearchBookFragment extends Fragment {
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
+                if (manager.findLastVisibleItemPosition() == mAdapter.getItemCount() -1) {
+                    if (!isLoading) {
+                        loadMore(mAdapter.getItemCount());
+                        isLoading = true;
+                    }
+                }
             }
         });
+    }
+
+    private void loadMore(int count) {
+        RetrofitConnector.getInstance().setBookListListener(new RetrofitConnector.BookListListener() {
+            @Override
+            public void onResult(List<Book> bookList) {
+                for (Book book : bookList) {
+                    mAdapter.addLast(book);
+                }
+                isLoading = false;
+            }
+        });
+        int pageCount = count / 10;
+        RetrofitConnector.getInstance().callSearchListWithPage(mCurrentKeyword, pageCount + 1);
     }
 
     public void callSearchBooks(String keyword) {

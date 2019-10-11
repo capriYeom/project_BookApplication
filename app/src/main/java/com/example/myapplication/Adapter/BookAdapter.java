@@ -63,6 +63,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         }
     }
 
+    public void addLast(Book book) {
+        mBookList.add(book);
+        Log.d("BOOKLISTSIZE", "addLast: " + mBookList.size());
+        notifyDataSetChanged();
+    }
+
     public void setBookClickListener(OnBookClickListener listener) {
         mClickListener = listener;
     }
