@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.DataManager.BookmarkSaver;
+import com.example.myapplication.DataManager.HistorySaver;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;
@@ -21,6 +23,8 @@ import com.example.myapplication.Retrofit.RetrofitConnector;
 import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity {
+    private Book currentBook;
+
     private TextView mTitleText, mSubtitleText, mPriceText, mRatingText, mAuthorsText, mPublisherText, mPublishedText, mPageText, mLanguageText, mIsbn10Text, mIsbn13Text, mDescriptionText;
     private ImageView mProfileImageView;
 
@@ -35,18 +39,22 @@ public class BookDetailActivity extends AppCompatActivity {
         RetrofitConnector.getInstance().setBookListener(new RetrofitConnector.BookListener() {
             @Override
             public void onResult(Book book) {
+                currentBook = book;
+                mBookmarkButton.setEnabled(true);
                 setBookDetail(book);
+                HistorySaver.getInstance().addBookToList(currentBook);
+
             }
         });
 
         mBookmarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 2019-10-10 add Bookmark
+                BookmarkSaver.getInstance().addBookToList(currentBook);
             }
         });
 
-
+        mBookmarkButton.setEnabled(false);
     }
 
     @Override

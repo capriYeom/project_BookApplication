@@ -40,7 +40,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BookAdapter.ViewHolder holder, int position) {
         Book book = mBookList.get(position);
-        holder.bind(context, book, mClickListener);
+        holder.bind(context, book, mClickListener, mLongClickListener);
     }
 
     @Override
@@ -52,6 +52,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public void setBookList(List<Book> bookList) {
         mBookList = bookList;
         notifyDataSetChanged();
+    }
+
+    public void deleteElement(Book book) {
+        for (Book targetBook : mBookList) {
+            if (targetBook.getTitle().equals(book.getTitle())) {
+                mBookList.remove(targetBook);
+                notifyDataSetChanged();
+            }
+        }
     }
 
     public void setBookClickListener(OnBookClickListener listener) {
@@ -75,18 +84,28 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             bookProfileImageView = (ImageView) itemView.findViewById(R.id.listimage_book);
         }
 
-        void bind(Context context, final Book book, final OnBookClickListener listener) {
+        void bind(Context context, final Book book, final OnBookClickListener bookClickListener, final OnBookLongClickListener bookLongClickListener) {
             titleView.setText(book.getTitle());
             subtitleView.setText(book.getSubtitle());
             priceView.setText(book.getPrice());
             isbnView.setText(String.valueOf(book.getIsbn13()));
             Glide.with(context).load(book.getImage()).into(bookProfileImageView);
 
-            if (listener != null) {
+            if (bookClickListener != null) {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listener.onItemClick(book);
+                        bookClickListener.onItemClick(book);
+                    }
+                });
+            }
+
+            if (bookLongClickListener != null) {
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        bookLongClickListener.onItemLongClick(book);
+                        return true;
                     }
                 });
             }

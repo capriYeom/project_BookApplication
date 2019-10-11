@@ -72,12 +72,21 @@ public class SearchBookFragment extends Fragment {
             }
         });
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
     }
 
     public void callSearchBooks(String keyword) {
         RetrofitConnector.getInstance().setBookListListener(new RetrofitConnector.BookListListener() {
             @Override
             public void onResult(List<Book> bookList) {
+                if (bookList.size() <= 0) {
+                    Toast.makeText(getContext(), "No Result." , Toast.LENGTH_SHORT).show();
+                }
                 mAdapter.setBookList(bookList);
             }
         });

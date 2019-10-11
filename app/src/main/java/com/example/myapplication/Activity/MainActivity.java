@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.myapplication.Adapter.BookPagerAdapter;
+import com.example.myapplication.Fragment.BookmarkFragment;
+import com.example.myapplication.Fragment.HistoryFragment;
 import com.example.myapplication.Fragment.NewBookFragment;
 import com.example.myapplication.Fragment.SearchBookFragment;
 import com.example.myapplication.R;
@@ -35,28 +37,22 @@ public class MainActivity extends AppCompatActivity {
         BookPagerAdapter pagerAdapter = new BookPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         pagerAdapter.addFragment(new NewBookFragment());
         pagerAdapter.addFragment(new SearchBookFragment());
+        pagerAdapter.addFragment(new BookmarkFragment());
+        pagerAdapter.addFragment(new HistoryFragment());
         mViewPager.setAdapter(pagerAdapter);
 
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         mTabLayout.addTab(mTabLayout.newTab().setText("NEW"));
         mTabLayout.addTab(mTabLayout.newTab().setText("SEARCH"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("BOOKMARK"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("HISTORY"));
         mTabLayout.setTabTextColors(Color.LTGRAY, Color.BLUE);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-                    case 0:
-                        mViewPager.setCurrentItem(tab.getPosition());
-                        break;
-                    case 1:
-                        mViewPager.setCurrentItem(tab.getPosition());
-                        break;
-                    default:
-                        break;
-
-                }
+                mViewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override

@@ -53,8 +53,6 @@ public class RetrofitConnector {
         @Override
         public void onResponse(Call<RetrofitResponse> call, Response<RetrofitResponse> response) {
             assert response.body() != null;
-            String result = response.body().getBooks().get(1).getTitle();
-            String error = String.valueOf(response.body().getError());
 
             if (mListListener != null) {
                 mListListener.onResult(response.body().getBooks());
