@@ -79,14 +79,18 @@ public class RetrofitConnector {
     private Callback<Book> mRetroBookCallback = new Callback<Book>() {
         @Override
         public void onResponse(Call<Book> call, Response<Book> response) {
+            assert response.body() != null;
+
             if (mListener != null) {
-                mListener.onResult(response.body());
+                mListener.onResult(response.body(), null);
             }
         }
 
         @Override
         public void onFailure(Call<Book> call, Throwable t) {
-            t.printStackTrace();
+            if (mListener != null) {
+                mListener.onResult(null, new RetrofitException(t.getMessage()));
+            }
         }
     };
 
@@ -118,6 +122,6 @@ public class RetrofitConnector {
     }
 
     public interface BookListener {
-        void onResult(Book book);
+        void onResult(Book book, RetrofitException e);
     }
 }

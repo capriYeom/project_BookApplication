@@ -19,6 +19,7 @@ import com.example.myapplication.DataManager.HistorySaver;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;
+import com.example.myapplication.Retrofit.RetrofitException;
 
 import java.util.List;
 
@@ -38,12 +39,14 @@ public class BookDetailActivity extends AppCompatActivity {
 
         RetrofitConnector.getInstance().setBookListener(new RetrofitConnector.BookListener() {
             @Override
-            public void onResult(Book book) {
+            public void onResult(Book book, RetrofitException e) {
+                if (e != null) {
+                    e.printStackTrace();
+                }
                 currentBook = book;
                 mBookmarkButton.setEnabled(true);
                 setBookDetail(book);
                 HistorySaver.getInstance().addBookToList(currentBook);
-
             }
         });
 
