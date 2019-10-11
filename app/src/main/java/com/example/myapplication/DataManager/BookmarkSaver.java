@@ -1,7 +1,5 @@
 package com.example.myapplication.DataManager;
 
-import android.graphics.Paint;
-
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.Model.BookSortType;
 

@@ -1,7 +1,6 @@
 package com.example.myapplication.DataManager;
 
 import com.example.myapplication.Model.Book;
-import com.example.myapplication.Model.BookSortType;
 
 import java.util.ArrayList;
 import java.util.List;

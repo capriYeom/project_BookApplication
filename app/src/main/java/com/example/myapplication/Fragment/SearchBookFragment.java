@@ -25,8 +25,6 @@ import com.example.myapplication.Retrofit.RetrofitException;
 
 import java.util.List;
 
-import retrofit2.Retrofit;
-
 public class SearchBookFragment extends Fragment {
 
     RecyclerView mRecyclerView;

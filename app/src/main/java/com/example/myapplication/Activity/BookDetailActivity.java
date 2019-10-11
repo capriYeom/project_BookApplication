@@ -1,15 +1,11 @@
 package com.example.myapplication.Activity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,8 +16,6 @@ import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;
 import com.example.myapplication.Retrofit.RetrofitException;
-
-import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity {
     private Book currentBook;
