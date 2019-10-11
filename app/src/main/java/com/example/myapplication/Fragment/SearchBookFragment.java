@@ -21,6 +21,7 @@ import com.example.myapplication.Adapter.BookAdapter;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;
+import com.example.myapplication.Retrofit.RetrofitException;
 
 import java.util.List;
 
@@ -94,7 +95,12 @@ public class SearchBookFragment extends Fragment {
     private void loadMore(int count) {
         RetrofitConnector.getInstance().setBookListListener(new RetrofitConnector.BookListListener() {
             @Override
-            public void onResult(List<Book> bookList) {
+            public void onResult(List<Book> bookList, RetrofitException e) {
+                if (e != null) {
+                    e.printStackTrace();
+                    return;
+                }
+
                 for (Book book : bookList) {
                     mAdapter.addLast(book);
                 }
@@ -108,9 +114,12 @@ public class SearchBookFragment extends Fragment {
     public void callSearchBooks(String keyword) {
         RetrofitConnector.getInstance().setBookListListener(new RetrofitConnector.BookListListener() {
             @Override
-            public void onResult(List<Book> bookList) {
+            public void onResult(List<Book> bookList, RetrofitException e) {
+                if (e != null) {
+                    e.printStackTrace();
+                }
                 if (bookList.size() <= 0) {
-                    Toast.makeText(getContext(), "No Result." , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "No Result.", Toast.LENGTH_SHORT).show();
                 }
                 mAdapter.setBookList(bookList);
             }

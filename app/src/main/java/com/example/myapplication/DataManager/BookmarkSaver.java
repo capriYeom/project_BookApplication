@@ -1,8 +1,13 @@
 package com.example.myapplication.DataManager;
 
+import android.graphics.Paint;
+
 import com.example.myapplication.Model.Book;
+import com.example.myapplication.Model.BookSortType;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class BookmarkSaver {
@@ -36,6 +41,57 @@ public class BookmarkSaver {
                 mBookList.remove(targetBook);
             }
         }
+    }
+
+    public void sortBookmark(BookSortType type) {
+        switch (type) {
+            case NAME:
+                sortByName();
+                break;
+            case RATING:
+                sortByRating();
+                break;
+            case PRICE:
+                sortByPrice();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void sortByName() {
+        Collections.sort(mBookList, new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                return o1.getTitle().compareTo(o2.getTitle());
+            }
+        });
+    }
+
+    private void sortByRating() {
+        Collections.sort(mBookList, new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                if (o1.getRating() > o2.getRating()) {
+                    return 1;
+                } else if (o1.getRating() < o2.getRating()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+    }
+
+    private void sortByPrice() {
+        Collections.sort(mBookList, new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                float o1Price = Float.parseFloat(o1.getPrice().substring(1));
+                float o2Price = Float.parseFloat(o2.getPrice().substring(1));
+                return Float.compare(o1Price, o2Price);
+            }
+        });
     }
 
     public List<Book> getBookList() {

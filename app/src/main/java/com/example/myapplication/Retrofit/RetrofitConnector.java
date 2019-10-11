@@ -54,8 +54,14 @@ public class RetrofitConnector {
         public void onResponse(Call<RetrofitResponse> call, Response<RetrofitResponse> response) {
             assert response.body() != null;
 
+            if (response.body().getError() != 0) {
+                if (mListListener != null) {
+                    mListListener.onResult(null, new RetrofitException(String.valueOf(response.body().getError())));
+                }
+            }
+
             if (mListListener != null) {
-                mListListener.onResult(response.body().getBooks());
+                mListListener.onResult(response.body().getBooks(), null);
             }
         }
 
@@ -63,6 +69,10 @@ public class RetrofitConnector {
         public void onFailure(Call<RetrofitResponse> call, Throwable t) {
             t.printStackTrace();
             Log.d("CONNECTIONEVENT", "onFailure: " + t);
+
+            if (mListListener != null) {
+                mListListener.onResult(null, new RetrofitException("Retrofit Failed"));
+            }
         }
     };
 
@@ -104,7 +114,7 @@ public class RetrofitConnector {
     }
 
     public interface BookListListener {
-        void onResult(List<Book> bookList);
+        void onResult(List<Book> bookList, RetrofitException e);
     }
 
     public interface BookListener {

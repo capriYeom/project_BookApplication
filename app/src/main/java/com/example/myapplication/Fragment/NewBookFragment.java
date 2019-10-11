@@ -19,6 +19,7 @@ import com.example.myapplication.Adapter.BookAdapter;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;
+import com.example.myapplication.Retrofit.RetrofitException;
 
 import java.util.List;
 
@@ -61,7 +62,10 @@ public class NewBookFragment extends Fragment {
     private void callNewBooks() {
         RetrofitConnector.getInstance().setBookListListener(new RetrofitConnector.BookListListener() {
             @Override
-            public void onResult(List<Book> bookList) {
+            public void onResult(List<Book> bookList, RetrofitException e) {
+                if (e != null) {
+                    e.printStackTrace();
+                }
                 mAdapter.setBookList(bookList);
             }
         });
