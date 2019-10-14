@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">My Application</string>
 
+    <!-- Application Feature -->
+    <string name="book_bookmark">BOOKMARK</string>
+    <string name="book_unbookmark">DELETE BOOKMARK</string>
+
     <!-- Book Detail -->
     <string name="book_title">%s</string>
     <string name="book_subtitle">%s</string>

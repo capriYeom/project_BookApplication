@@ -42,6 +42,11 @@ public class BookmarkFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setFragmentEnvironment();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         mBookList = BookmarkSaver.getInstance().getBookList();
         mAdapter.setBookList(mBookList);
     }

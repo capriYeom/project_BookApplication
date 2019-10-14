@@ -42,6 +42,11 @@ public class HistoryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setFragmentEnvironment();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         mBookList = HistorySaver.getInstance().getBookList();
         mAdapter.setBookList(mBookList);
     }

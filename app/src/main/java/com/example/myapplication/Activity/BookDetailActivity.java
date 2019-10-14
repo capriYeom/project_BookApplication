@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,8 @@ import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;
 import com.example.myapplication.Retrofit.RetrofitException;
+
+import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity {
     private Book currentBook;
@@ -41,13 +44,26 @@ public class BookDetailActivity extends AppCompatActivity {
                 mBookmarkButton.setEnabled(true);
                 setBookDetail(book);
                 HistorySaver.getInstance().addBookToList(currentBook);
+                if (isBookmarked()) {
+                    mBookmarkButton.setText(getString(R.string.book_unbookmark));
+                } else {
+                    mBookmarkButton.setText(R.string.book_bookmark);
+                }
             }
         });
 
         mBookmarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BookmarkSaver.getInstance().addBookToList(currentBook);
+                if (isBookmarked()) {
+                    BookmarkSaver.getInstance().removeBookFromList(currentBook);
+                    Toast.makeText(BookDetailActivity.this, "This book's bookmark has deleted", Toast.LENGTH_SHORT).show();
+                    mBookmarkButton.setText(R.string.book_bookmark);
+                } else {
+                    BookmarkSaver.getInstance().addBookToList(currentBook);
+                    Toast.makeText(BookDetailActivity.this, "This book has bookmarked", Toast.LENGTH_SHORT).show();
+                    mBookmarkButton.setText(R.string.book_unbookmark);
+                }
             }
         });
 
@@ -95,5 +111,15 @@ public class BookDetailActivity extends AppCompatActivity {
         mDescriptionText.setText(String.format(getString(R.string.book_description), book.getDesc()));
 
         Glide.with(this).load(book.getImage()).into(mProfileImageView);
+    }
+
+    private boolean isBookmarked() {
+        List<Book> bookList = BookmarkSaver.getInstance().getBookList();
+        for (Book book : bookList) {
+            if (book.getIsbn13().toString().equals(book.getIsbn13().toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
