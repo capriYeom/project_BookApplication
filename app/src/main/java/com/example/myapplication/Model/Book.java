@@ -1,13 +1,19 @@
 package com.example.myapplication.Model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Book {
+
+    @PrimaryKey(autoGenerate = true)
+    private Long isbn13;
     private String title;
     private String subtitle;
     private String authors;
     private String publisher;
     private String language;
     private Integer isbn10;
-    private Long isbn13;
     private Integer pages;
     private Integer year;
     private Integer rating;
@@ -15,6 +21,8 @@ public class Book {
     private String price;
     private String image;
     private String url;
+
+    public Book() {}
 
     public String getTitle() {
         return title;
