@@ -16,7 +16,7 @@ public interface BookDao {
     void addAll(List<Book> bookList);
 
     @Insert
-    void all(Book book);
+    void add(Book book);
 
     @Delete
     void delete(Book book);
