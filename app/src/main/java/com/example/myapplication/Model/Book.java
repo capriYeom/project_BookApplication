@@ -1,12 +1,7 @@
 package com.example.myapplication.Model;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-@Entity
 public class Book {
 
-    @PrimaryKey(autoGenerate = true)
     private Long isbn13;
     private String title;
     private String subtitle;
@@ -82,10 +77,6 @@ public class Book {
         return url;
     }
 
-    public boolean isBookmarked() {
-        return isBookmarked;
-    }
-
     public void setIsbn13(Long isbn13) {
         this.isbn13 = isbn13;
     }
@@ -142,7 +133,4 @@ public class Book {
         this.url = url;
     }
 
-    public void setBookmarked(boolean isBookmarked) {
-        this.isBookmarked = isBookmarked;
-    }
 }
