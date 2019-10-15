@@ -22,6 +22,8 @@ public class Book {
     private String image;
     private String url;
 
+    private boolean isBookmarked;
+
     public Book() {}
 
     public String getTitle() {
@@ -78,5 +80,69 @@ public class Book {
 
     public String getUrl() {
         return url;
+    }
+
+    public boolean isBookmarked() {
+        return isBookmarked;
+    }
+
+    public void setIsbn13(Long isbn13) {
+        this.isbn13 = isbn13;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public void setAuthors(String authors) {
+        this.authors = authors;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setIsbn10(Integer isbn10) {
+        this.isbn10 = isbn10;
+    }
+
+    public void setPages(Integer pages) {
+        this.pages = pages;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setBookmarked(boolean isBookmarked) {
+        this.isBookmarked = isBookmarked;
     }
 }

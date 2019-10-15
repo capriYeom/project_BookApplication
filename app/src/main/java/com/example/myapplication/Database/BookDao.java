@@ -26,4 +26,10 @@ public interface BookDao {
 
     @Query("SELECT * FROM book")
     LiveData<List<Book>> getAll();
+
+    @Query("SELECT * FROM book WHERE isBookmarked")
+    LiveData<List<Book>> getBoomarked();
+    
+    @Query("update book set isBookmarked =:isBookmarked where isbn13 =:isbn13")
+    void updateBookmark(Long isbn13, boolean isBookmarked);
 }
