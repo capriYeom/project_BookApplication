@@ -58,9 +58,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         for (Book targetBook : mBookList) {
             if (targetBook.getIsbn13().toString().equals(book.getIsbn13().toString())) {
                 mBookList.remove(targetBook);
-                notifyDataSetChanged();
             }
         }
+        notifyDataSetChanged();
     }
 
     public void addLast(Book book) {
