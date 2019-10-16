@@ -116,7 +116,7 @@ public class BookDetailActivity extends AppCompatActivity {
     private boolean isBookmarked() {
         List<Book> bookList = BookmarkSaver.getInstance().getBookList();
         for (Book book : bookList) {
-            if (book.getIsbn13().toString().equals(book.getIsbn13().toString())) {
+            if (book.getIsbn13().toString().equals(currentBook.getIsbn13().toString())) {
                 return true;
             }
         }
