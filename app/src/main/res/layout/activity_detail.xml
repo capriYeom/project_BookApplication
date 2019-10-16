@@ -95,16 +95,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_above="@id/button_bookmark"
+        android:layout_above="@id/layout_buttons"
         android:layout_below="@+id/imageview_bookprofile"/>
 
-    <Button
-        android:id="@+id/button_bookmark"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="BOOKMARK"
+        android:orientation="horizontal"
+        android:id="@+id/layout_buttons"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:weightSum="2">
+
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:text="MEMO"
+            android:id="@+id/button_memo"/>
+
+        <Button
+            android:id="@+id/button_bookmark"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="BOOKMARK"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

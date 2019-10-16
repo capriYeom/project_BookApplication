@@ -1,13 +1,16 @@
 package com.example.myapplication.Activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -26,7 +29,7 @@ public class BookDetailActivity extends AppCompatActivity {
     private TextView mTitleText, mSubtitleText, mPriceText, mRatingText, mAuthorsText, mPublisherText, mPublishedText, mPageText, mLanguageText, mIsbn10Text, mIsbn13Text, mDescriptionText;
     private ImageView mProfileImageView;
 
-    private Button mBookmarkButton;
+    private Button mBookmarkButton , mMemoButton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 }
                 currentBook = book;
                 mBookmarkButton.setEnabled(true);
+                mMemoButton.setEnabled(true);
                 setBookDetail(book);
                 HistorySaver.getInstance().addBookToList(currentBook);
                 if (isBookmarked()) {
@@ -66,8 +70,31 @@ public class BookDetailActivity extends AppCompatActivity {
                 }
             }
         });
+        mMemoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText memoText = new EditText(BookDetailActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(BookDetailActivity.this)
+                        .setTitle("MEMO")
+                        .setView(memoText)
+                        .setPositiveButton("SET", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(BookDetailActivity.this, "Memo Saved", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                builder.create().show();
+            }
+        });
 
         mBookmarkButton.setEnabled(false);
+        mMemoButton.setEnabled(false);
     }
 
     @Override
@@ -94,6 +121,7 @@ public class BookDetailActivity extends AppCompatActivity {
         mProfileImageView = (ImageView) findViewById(R.id.imageview_bookprofile);
 
         mBookmarkButton = (Button) findViewById(R.id.button_bookmark);
+        mMemoButton = (Button) findViewById(R.id.button_memo);
     }
 
     private void setBookDetail(Book book) {
