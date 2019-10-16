@@ -27,7 +27,7 @@ import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity {
     private Book currentBook;
-    Memo memoString;
+    Memo currentMemo;
 
     private TextView mTitleText, mSubtitleText, mPriceText, mRatingText, mAuthorsText, mPublisherText, mPublishedText, mPageText, mLanguageText, mIsbn10Text, mIsbn13Text, mDescriptionText;
     private ImageView mProfileImageView;
@@ -147,13 +147,17 @@ public class BookDetailActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (memoText.getText().toString().length() > 0) {
+                            Memo memo = new Memo(currentBook.getIsbn13(), memoText.getText().toString());
                             if (isMemoed()) {
                                 DatabaseWrapper.getInstance(BookDetailActivity.this).updateBookMemo(currentBook.getIsbn13(), memoText.getText().toString());
                             } else {
+
                                 DatabaseWrapper.getInstance(BookDetailActivity.this).addBookMemo(new Memo(currentBook.getIsbn13(), memoText.getText().toString()));
                             }
-                        } else {
+                            currentMemo = memo;
                             Toast.makeText(BookDetailActivity.this, "Memo Saved", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(BookDetailActivity.this, "the text must be more than 0", Toast.LENGTH_SHORT).show();
                         }
                     }
                 })
@@ -165,11 +169,12 @@ public class BookDetailActivity extends AppCompatActivity {
                 });
 
         if (isMemoed()) {
-            memoText.setText(memoString.getMemo());
+            memoText.setText(currentMemo.getMemo());
             builder.setNeutralButton("CLEAR", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    DatabaseWrapper.getInstance(BookDetailActivity.this).deleteBookmemo(memoString);
+                    DatabaseWrapper.getInstance(BookDetailActivity.this).deleteBookmemo(currentMemo);
+                    currentMemo = null;
                 }
             });
         }
@@ -177,13 +182,15 @@ public class BookDetailActivity extends AppCompatActivity {
         builder.create().show();
     }
     private boolean isMemoed() {
-        DatabaseWrapper.getInstance(BookDetailActivity.this).getBookMemo(currentBook.getIsbn13(), new DatabaseWrapper.GetMemoHandler() {
-            @Override
-            public void onResult(Memo memo) {
-                memoString = memo;
-            }
-        });
-        return memoString != null && memoString.getMemo().length() > 0;
+        if (currentBook != null) {
+            DatabaseWrapper.getInstance(BookDetailActivity.this).getBookMemo(currentBook.getIsbn13(), new DatabaseWrapper.GetMemoHandler() {
+                @Override
+                public void onResult(Memo memo) {
+                    currentMemo = memo;
+                }
+            });
+        }
+        return currentMemo != null && currentMemo.getMemo().length() > 0;
     }
 
 }
