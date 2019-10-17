@@ -18,10 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.Activity.BookDetailActivity;
 import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.Adapter.BookAdapter;
+import com.example.myapplication.DataManager.DatabaseWrapper;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;
 import com.example.myapplication.Retrofit.RetrofitException;
+import com.example.myapplication.utils.PreferenceUtils;
 
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class SearchBookFragment extends Fragment {
                 String keyword = mEditText.getText().toString();
                 if (keyword.length() > 0) {
                     mCurrentKeyword = keyword;
+                    PreferenceUtils.setHistory(keyword);
                     callSearchBooks(keyword);
                 } else {
                     Toast.makeText(getContext(), "Keyword must be available." , Toast.LENGTH_SHORT).show();
@@ -62,6 +65,14 @@ public class SearchBookFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setFragmentEnvironment();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (PreferenceUtils.getHistory() != null && PreferenceUtils.getHistory().length() > 0) {
+            mEditText.setText(PreferenceUtils.getHistory());
+        }
     }
 
     private void setFragmentEnvironment() {

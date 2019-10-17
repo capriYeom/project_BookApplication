@@ -13,6 +13,7 @@ import com.example.myapplication.Fragment.HistoryFragment;
 import com.example.myapplication.Fragment.NewBookFragment;
 import com.example.myapplication.Fragment.SearchBookFragment;
 import com.example.myapplication.R;
+import com.example.myapplication.utils.PreferenceUtils;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        PreferenceUtils.init(getApplicationContext());
         initViewPager();
 
     }

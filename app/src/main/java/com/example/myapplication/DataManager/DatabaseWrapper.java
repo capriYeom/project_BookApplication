@@ -64,38 +64,8 @@ public class DatabaseWrapper {
         }).start();
     }
 
-    public void getAllHistory() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                historyDao().getAllHistory();
-            }
-        }).start();
-    }
-
-    public void addHistory(final String keyword) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                historyDao().add(new SearchKeywordHistory(keyword));
-            }
-        }).start();
-    }
-
-    public void clearAllSearchHistory() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                historyDao().clearHistory();
-            }
-        }).start();
-    }
     private BookMemoDao bookMemoDao() {
         return mDatabase.memoDao();
-    }
-
-    private SearchHistoryDao historyDao() {
-        return mDatabase.historyDao();
     }
 
     public interface GetMemoHandler {
