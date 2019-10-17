@@ -19,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.BookDetailActivity"/>
-        <activity android:name=".Activity.SettingsActivity"/>
     </application>
 
 </manifest>
