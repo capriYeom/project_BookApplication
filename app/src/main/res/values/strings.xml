@@ -18,4 +18,14 @@
     <string name="book_isbn10">ISBN10 : %d</string>
     <string name="book_isbn13">ISBN13 : %d</string>
     <string name="book_description">%s</string>
+
+
+    <!-- book Sort type -->
+    <string name="sort_type_prompt">Choose a Sort type</string>
+
+    <string-array name="sort_type">
+        <item>RATING</item>
+        <item>NAME</item>
+        <item>PRICE</item>
+    </string-array>
 </resources>

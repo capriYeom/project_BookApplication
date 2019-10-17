@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 public class PreferenceUtils {
     private static final String PREFERENCE_KEY_SEARCH_HISTORY = "history";
+    private static final String PREFERNECE_KEY_SORT_TYPE = "sort";
 
     private static Context mAppContext;
 
@@ -26,6 +27,15 @@ public class PreferenceUtils {
 
     public static String getHistory() {
         return getSharedPreferences().getString(PREFERENCE_KEY_SEARCH_HISTORY, "");
+    }
+
+    public static void setSortType(String sortType) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
+        editor.putString(PREFERNECE_KEY_SORT_TYPE, sortType).apply();
+    }
+
+    public static String getSortType() {
+        return getSharedPreferences().getString(PREFERNECE_KEY_SORT_TYPE, "");
     }
 
     public static void clearAll() {
