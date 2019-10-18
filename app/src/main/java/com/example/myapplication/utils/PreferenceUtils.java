@@ -3,6 +3,8 @@ package com.example.myapplication.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.myapplication.Model.BookSortType;
+
 public class PreferenceUtils {
     private static final String PREFERENCE_KEY_SEARCH_HISTORY = "history";
     private static final String PREFERNECE_KEY_SORT_TYPE = "sort";
@@ -29,13 +31,18 @@ public class PreferenceUtils {
         return getSharedPreferences().getString(PREFERENCE_KEY_SEARCH_HISTORY, "");
     }
 
-    public static void setSortType(String sortType) {
+    public static void setSortType(BookSortType sortType) {
         SharedPreferences.Editor editor = getSharedPreferences().edit();
-        editor.putString(PREFERNECE_KEY_SORT_TYPE, sortType).apply();
+
+        String sortTypeString = sortType.name();
+
+        editor.putString(PREFERNECE_KEY_SORT_TYPE, sortTypeString).apply();
     }
 
-    public static String getSortType() {
-        return getSharedPreferences().getString(PREFERNECE_KEY_SORT_TYPE, "");
+    public static BookSortType getSortType() {
+        String sortTypeString = getSharedPreferences().getString(PREFERNECE_KEY_SORT_TYPE, "");
+        BookSortType type = BookSortType.valueOf(sortTypeString);
+        return type;
     }
 
     public static void clearAll() {
