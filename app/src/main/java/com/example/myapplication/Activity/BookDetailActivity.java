@@ -56,6 +56,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 } else {
                     mBookmarkButton.setText(R.string.book_bookmark);
                 }
+                getMemo();
             }
         });
 
@@ -82,6 +83,7 @@ public class BookDetailActivity extends AppCompatActivity {
 
         mBookmarkButton.setEnabled(false);
         mMemoButton.setEnabled(false);
+
     }
 
     @Override
@@ -181,15 +183,17 @@ public class BookDetailActivity extends AppCompatActivity {
 
         builder.create().show();
     }
+    private void getMemo() {
+        DatabaseWrapper.getInstance(BookDetailActivity.this).getBookMemo(currentBook.getIsbn13(), new DatabaseWrapper.GetMemoHandler() {
+            @Override
+            public void onResult(Memo memo) {
+                currentMemo = memo;
+                mMemoButton.setEnabled(true);
+            }
+        });
+    }
+
     private boolean isMemoed() {
-        if (currentBook != null) {
-            DatabaseWrapper.getInstance(BookDetailActivity.this).getBookMemo(currentBook.getIsbn13(), new DatabaseWrapper.GetMemoHandler() {
-                @Override
-                public void onResult(Memo memo) {
-                    currentMemo = memo;
-                }
-            });
-        }
         return currentMemo != null && currentMemo.getMemo().length() > 0;
     }
 
