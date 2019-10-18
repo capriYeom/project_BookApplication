@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.Activity.BookDetailActivity;
 import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.Adapter.BookAdapter;
-import com.example.myapplication.DataManager.DatabaseWrapper;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;

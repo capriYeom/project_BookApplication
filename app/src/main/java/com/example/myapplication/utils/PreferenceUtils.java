@@ -2,7 +2,6 @@ package com.example.myapplication.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.example.myapplication.Model.BookSortType;
 

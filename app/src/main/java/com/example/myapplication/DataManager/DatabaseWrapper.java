@@ -5,8 +5,6 @@ import android.util.Log;
 
 import androidx.room.Room;
 
-import java.time.chrono.ThaiBuddhistEra;
-
 public class DatabaseWrapper {
     private static DatabaseWrapper sInstance;
     private static final String DATABASE_NAME = "app_database";

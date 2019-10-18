@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: 2019-10-10 ViewPager Adapter
 public class BookPagerAdapter extends FragmentPagerAdapter {
 
 
