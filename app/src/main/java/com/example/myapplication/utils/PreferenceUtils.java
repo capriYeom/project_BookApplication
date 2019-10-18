@@ -2,6 +2,7 @@ package com.example.myapplication.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.myapplication.Model.BookSortType;
 
@@ -41,7 +42,7 @@ public class PreferenceUtils {
 
     public static BookSortType getSortType() {
         String sortTypeString = getSharedPreferences().getString(PREFERNECE_KEY_SORT_TYPE, "");
-        if (sortTypeString != null) {
+        if (sortTypeString == null) {
             return BookSortType.RATING;
         }
         return BookSortType.valueOf(sortTypeString);

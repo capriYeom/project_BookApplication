@@ -18,31 +18,49 @@ import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private Spinner mSpinner;
+    private List<BookSortType> mCategory = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner_bookmark_sort);
+        mSpinner = (Spinner) findViewById(R.id.spinner_bookmark_sort);
 
-        spinner.setOnItemSelectedListener(this);
+        mSpinner.setOnItemSelectedListener(this);
 
-        List<BookSortType> categories = new ArrayList<>();
-        categories.add(BookSortType.RATING);
-        categories.add(BookSortType.PRICE);
-        categories.add(BookSortType.NAME);
+        mCategory.add(BookSortType.RATING);
+        mCategory.add(BookSortType.PRICE);
+        mCategory.add(BookSortType.NAME);
 
-        ArrayAdapter<BookSortType> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<BookSortType> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mCategory);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        mSpinner.setAdapter(dataAdapter);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        BookSortType type;
+
+        if (PreferenceUtils.getSortType() != null) {
+            type = PreferenceUtils.getSortType();
+            for (int i = 0; i < mCategory.size(); i++) {
+                if (mCategory.get(i).equals(type)) {
+                    mSpinner.setSelection(i);
+                    return;
+                }
+            }
+        }
+        mSpinner.setSelection(0);
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String item = parent.getItemAtPosition(position).toString();
-        
-        PreferenceUtils.setHistory(item);
+        PreferenceUtils.setSortType(BookSortType.valueOf(item));
     }
 
     @Override
