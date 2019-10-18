@@ -2,6 +2,7 @@ package com.example.myapplication.DataManager;
 
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.Model.BookSortType;
+import com.example.myapplication.utils.PreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -93,6 +94,9 @@ public class BookmarkSaver {
     }
 
     public List<Book> getBookList() {
+        if (PreferenceUtils.getSortType() != null) {
+            sortBookmark(PreferenceUtils.getSortType());
+        }
         return mBookList;
     }
 }
