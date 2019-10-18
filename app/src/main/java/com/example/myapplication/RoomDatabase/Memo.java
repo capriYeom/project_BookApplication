@@ -1,4 +1,4 @@
-package com.example.myapplication.Model;
+package com.example.myapplication.RoomDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

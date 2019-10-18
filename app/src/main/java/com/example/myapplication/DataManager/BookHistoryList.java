@@ -5,17 +5,17 @@ import com.example.myapplication.Model.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistorySaver {
+public class BookHistoryList {
     private List<Book> mBookList;
-    private static HistorySaver sInstance;
+    private static BookHistoryList sInstance;
 
-    private HistorySaver() {
+    private BookHistoryList() {
         mBookList = new ArrayList<>();
     }
 
-    public static HistorySaver getInstance() {
+    public static BookHistoryList getInstance() {
         if (sInstance == null) {
-            sInstance = new HistorySaver();
+            sInstance = new BookHistoryList();
         }
 
         return sInstance;

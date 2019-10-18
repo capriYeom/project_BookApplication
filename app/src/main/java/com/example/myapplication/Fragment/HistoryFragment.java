@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.Activity.BookDetailActivity;
 import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.Adapter.BookAdapter;
-import com.example.myapplication.DataManager.HistorySaver;
+import com.example.myapplication.DataManager.BookHistoryList;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 
@@ -47,7 +47,7 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mBookList = HistorySaver.getInstance().getBookList();
+        mBookList = BookHistoryList.getInstance().getBookList();
         mAdapter.setBookList(mBookList);
     }
 
@@ -77,7 +77,7 @@ public class HistoryFragment extends Fragment {
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                HistorySaver.getInstance().removeBookFromList(book);
+                                BookHistoryList.getInstance().removeBookFromList(book);
                                 mAdapter.deleteElement(book);
                                 dialog.dismiss();
                             }

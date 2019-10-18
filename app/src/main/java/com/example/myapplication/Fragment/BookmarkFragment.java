@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.Activity.BookDetailActivity;
 import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.Adapter.BookAdapter;
-import com.example.myapplication.DataManager.BookmarkSaver;
+import com.example.myapplication.DataManager.BookBookmarkList;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 
@@ -47,7 +47,7 @@ public class BookmarkFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mBookList = BookmarkSaver.getInstance().getBookList();
+        mBookList = BookBookmarkList.getInstance().getBookList();
         mAdapter.setBookList(mBookList);
     }
 
@@ -77,7 +77,7 @@ public class BookmarkFragment extends Fragment {
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                BookmarkSaver.getInstance().removeBookFromList(book);
+                                BookBookmarkList.getInstance().removeBookFromList(book);
                                 mAdapter.deleteElement(book);
                                 dialog.dismiss();
                             }

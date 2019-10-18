@@ -14,10 +14,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.myapplication.DataManager.BookmarkSaver;
+import com.example.myapplication.DataManager.BookBookmarkList;
 import com.example.myapplication.RoomDatabase.DatabaseWrapper;
-import com.example.myapplication.DataManager.HistorySaver;
-import com.example.myapplication.Model.Memo;
+import com.example.myapplication.DataManager.BookHistoryList;
+import com.example.myapplication.RoomDatabase.Memo;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;
@@ -27,12 +27,13 @@ import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity {
     private Book currentBook;
-    Memo currentMemo;
+    private Memo currentMemo;
 
-    private TextView mTitleText, mSubtitleText, mPriceText, mRatingText, mAuthorsText, mPublisherText, mPublishedText, mPageText, mLanguageText, mIsbn10Text, mIsbn13Text, mDescriptionText;
+    private TextView mTitleText, mSubtitleText, mPriceText, mRatingText, mAuthorsText, mPublisherText, mPublishedText, mPageText, mLanguageText, mIsbn10Text, mIsbn13Text, mDescriptionText, mUrlText;
     private ImageView mProfileImageView;
 
     private Button mBookmarkButton , mMemoButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 mBookmarkButton.setEnabled(true);
                 mMemoButton.setEnabled(true);
                 setBookDetail(book);
-                HistorySaver.getInstance().addBookToList(currentBook);
+                BookHistoryList.getInstance().addBookToList(currentBook);
                 if (isBookmarked()) {
                     mBookmarkButton.setText(getString(R.string.book_unbookmark));
                 } else {
@@ -64,11 +65,11 @@ public class BookDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isBookmarked()) {
-                    BookmarkSaver.getInstance().removeBookFromList(currentBook);
+                    BookBookmarkList.getInstance().removeBookFromList(currentBook);
                     Toast.makeText(BookDetailActivity.this, "This book's bookmark has deleted", Toast.LENGTH_SHORT).show();
                     mBookmarkButton.setText(R.string.book_bookmark);
                 } else {
-                    BookmarkSaver.getInstance().addBookToList(currentBook);
+                    BookBookmarkList.getInstance().addBookToList(currentBook);
                     Toast.makeText(BookDetailActivity.this, "This book has bookmarked", Toast.LENGTH_SHORT).show();
                     mBookmarkButton.setText(R.string.book_unbookmark);
                 }
@@ -105,6 +106,7 @@ public class BookDetailActivity extends AppCompatActivity {
         mIsbn10Text = (TextView) findViewById(R.id.textview_isbn10);
         mIsbn13Text = (TextView) findViewById(R.id.textview_isbn13);
         mDescriptionText = (TextView) findViewById(R.id.textview_description);
+        mUrlText = (TextView) findViewById(R.id.textView_url);
 
         mProfileImageView = (ImageView) findViewById(R.id.imageview_bookprofile);
 
@@ -125,12 +127,13 @@ public class BookDetailActivity extends AppCompatActivity {
         mIsbn10Text.setText(String.format(getString(R.string.book_isbn10), book.getIsbn10()));
         mIsbn13Text.setText(String.format(getString(R.string.book_isbn13), book.getIsbn13()));
         mDescriptionText.setText(String.format(getString(R.string.book_description), book.getDesc()));
+        mUrlText.setText(String.format(getString(R.string.book_url),book.getUrl()));
 
         Glide.with(this).load(book.getImage()).into(mProfileImageView);
     }
 
     private boolean isBookmarked() {
-        List<Book> bookList = BookmarkSaver.getInstance().getBookList();
+        List<Book> bookList = BookBookmarkList.getInstance().getBookList();
         for (Book book : bookList) {
             if (book.getIsbn13().toString().equals(currentBook.getIsbn13().toString())) {
                 return true;
@@ -152,7 +155,6 @@ public class BookDetailActivity extends AppCompatActivity {
                             if (isMemo()) {
                                 DatabaseWrapper.getInstance(BookDetailActivity.this).updateBookMemo(currentBook.getIsbn13(), memoText.getText().toString());
                             } else {
-
                                 DatabaseWrapper.getInstance(BookDetailActivity.this).addBookMemo(new Memo(currentBook.getIsbn13(), memoText.getText().toString()));
                             }
                             currentMemo = memo;

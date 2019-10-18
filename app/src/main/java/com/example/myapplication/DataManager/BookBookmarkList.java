@@ -9,17 +9,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class BookmarkSaver {
-    private static BookmarkSaver sInstance;
+public class BookBookmarkList {
+    private static BookBookmarkList sInstance;
     private List<Book> mBookList;
 
-    private BookmarkSaver() {
+    private BookBookmarkList() {
         mBookList = new ArrayList<>();
     }
 
-    public static BookmarkSaver getInstance() {
+    public static BookBookmarkList getInstance() {
         if (sInstance == null) {
-            sInstance = new BookmarkSaver();
+            sInstance = new BookBookmarkList();
         }
 
         return sInstance;

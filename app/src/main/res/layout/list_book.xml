@@ -45,7 +45,7 @@
         android:textSize="12sp"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/listtext_url"
         android:layout_toLeftOf="@+id/listtext_price"
         android:layout_toStartOf="@+id/listtext_price"
         android:layout_toRightOf="@+id/listimage_book"
@@ -54,10 +54,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/listtext_url"
+        android:text="https://itbook.store"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/listtext_price"
+        android:layout_toStartOf="@+id/listtext_price"
+        android:layout_toRightOf="@id/listimage_book"
+        android:layout_toEndOf="@id/listimage_book"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="15dp"
+        android:layout_margin="8dp"
         android:text="$19.99"
         android:textSize="20sp"
         android:id="@+id/listtext_price"/>

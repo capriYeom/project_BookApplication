@@ -78,7 +78,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titleView, subtitleView, priceView, isbnView;
+        TextView titleView, subtitleView, priceView, isbnView, urlView;
         ImageView bookProfileImageView;
 
         ViewHolder(View itemView) {
@@ -87,6 +87,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             subtitleView = (TextView) itemView.findViewById(R.id.listtext_subtitle);
             priceView = (TextView) itemView.findViewById(R.id.listtext_price);
             isbnView = (TextView) itemView.findViewById(R.id.listtext_isbn);
+            urlView = (TextView) itemView.findViewById(R.id.listtext_url);
             bookProfileImageView = (ImageView) itemView.findViewById(R.id.listimage_book);
         }
 
@@ -95,6 +96,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             subtitleView.setText(book.getSubtitle());
             priceView.setText(book.getPrice());
             isbnView.setText(String.valueOf(book.getIsbn13()));
+            urlView.setText(book.getUrl());
             Glide.with(context).load(book.getImage()).into(bookProfileImageView);
 
             if (bookClickListener != null) {

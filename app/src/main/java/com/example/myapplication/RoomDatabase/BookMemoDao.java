@@ -6,8 +6,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.myapplication.Model.Memo;
-
 @Dao
 public interface BookMemoDao {
     @Query("SELECT * FROM book_memo WHERE book_num =:bookISBN")

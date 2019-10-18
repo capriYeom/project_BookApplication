@@ -105,7 +105,7 @@
         android:orientation="horizontal"
         android:id="@+id/layout_buttons"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/textView_url"
         android:weightSum="2">
 
 
@@ -129,4 +129,10 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_url"
+        android:text="URL"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

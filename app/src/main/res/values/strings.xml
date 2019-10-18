@@ -18,7 +18,7 @@
     <string name="book_isbn10">ISBN10 : %d</string>
     <string name="book_isbn13">ISBN13 : %d</string>
     <string name="book_description">%s</string>
-
+    <string name="book_url">%s</string>
 
     <!-- book Sort type -->
     <string name="sort_type_prompt">Choose a Sort type</string>
