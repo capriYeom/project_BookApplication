@@ -1,9 +1,11 @@
-package com.example.myapplication.DataManager;
+package com.example.myapplication.RoomDatabase;
 
 import android.content.Context;
 import android.util.Log;
 
 import androidx.room.Room;
+
+import com.example.myapplication.Model.Memo;
 
 public class DatabaseWrapper {
     private static DatabaseWrapper sInstance;

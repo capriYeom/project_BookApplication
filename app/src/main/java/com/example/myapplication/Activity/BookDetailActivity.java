@@ -15,9 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.DataManager.BookmarkSaver;
-import com.example.myapplication.DataManager.DatabaseWrapper;
+import com.example.myapplication.RoomDatabase.DatabaseWrapper;
 import com.example.myapplication.DataManager.HistorySaver;
-import com.example.myapplication.DataManager.Memo;
+import com.example.myapplication.Model.Memo;
 import com.example.myapplication.Model.Book;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitConnector;
