@@ -10,7 +10,6 @@ import java.util.List;
 
 public class BookPagerAdapter extends FragmentPagerAdapter {
 
-
     List<Fragment> mFragmentList;
 
     public BookPagerAdapter(@NonNull FragmentManager fm, int behavior) {

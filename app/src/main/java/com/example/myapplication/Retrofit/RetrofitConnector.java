@@ -16,10 +16,8 @@ public class RetrofitConnector {
 
     private static RetrofitConnector sInstance;
 
-    private Retrofit mRetrofit;
     private Call<RetrofitResponse> mResponse;
     private RetrofitService mService;
-    private Call<Book> mBookResponse;
 
     private BookListListener mListListener;
     private BookListener mListener;
@@ -41,7 +39,7 @@ public class RetrofitConnector {
     }
 
     private void initRetrofit() {
-        mRetrofit = new Retrofit.Builder()
+        Retrofit mRetrofit = new Retrofit.Builder()
                 .baseUrl("https://api.itbook.store/1.0/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -95,7 +93,7 @@ public class RetrofitConnector {
     };
 
     public void callDetailBook(String isbn13) {
-        mBookResponse = mService.getBookDetail(isbn13);
+        Call<Book> mBookResponse = mService.getBookDetail(isbn13);
         mBookResponse.enqueue(mRetroBookCallback);
     }
 

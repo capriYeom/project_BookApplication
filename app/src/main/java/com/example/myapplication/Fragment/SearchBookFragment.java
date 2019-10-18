@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -29,24 +28,22 @@ import java.util.List;
 
 public class SearchBookFragment extends Fragment {
 
-    RecyclerView mRecyclerView;
-    BookAdapter mAdapter;
-    EditText mEditText;
-    Button mButton;
-    List<Book> mInitialBookList = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private BookAdapter mAdapter;
+    private EditText mEditText;
+    private List<Book> mInitialBookList = new ArrayList<>();
 
-    String mCurrentKeyword;
-    boolean isLoading = false;
+    private String mCurrentKeyword;
+    private boolean isLoading = false;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.process_list);
-        mEditText = (EditText) view.findViewById(R.id.edittext_search);
-        mButton = (Button) view.findViewById(R.id.button_search);
+        mRecyclerView = view.findViewById(R.id.process_list);
+        mEditText = view.findViewById(R.id.edittext_search);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String keyword = mEditText.getText().toString();
@@ -125,7 +122,7 @@ public class SearchBookFragment extends Fragment {
         RetrofitConnector.getInstance().callSearchListWithPage(mCurrentKeyword, pageCount + 1);
     }
 
-    public void callSearchBooks(String keyword) {
+    private void callSearchBooks(String keyword) {
         RetrofitConnector.getInstance().setBookListListener(new RetrofitConnector.BookListListener() {
             @Override
             public void onResult(List<Book> bookList, RetrofitException e) {

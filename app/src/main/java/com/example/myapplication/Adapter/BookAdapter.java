@@ -83,12 +83,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
         ViewHolder(View itemView) {
             super(itemView);
-            titleView = (TextView) itemView.findViewById(R.id.listtext_title);
-            subtitleView = (TextView) itemView.findViewById(R.id.listtext_subtitle);
-            priceView = (TextView) itemView.findViewById(R.id.listtext_price);
-            isbnView = (TextView) itemView.findViewById(R.id.listtext_isbn);
-            urlView = (TextView) itemView.findViewById(R.id.listtext_url);
-            bookProfileImageView = (ImageView) itemView.findViewById(R.id.listimage_book);
+            titleView = itemView.findViewById(R.id.listtext_title);
+            subtitleView = itemView.findViewById(R.id.listtext_subtitle);
+            priceView = itemView.findViewById(R.id.listtext_price);
+            isbnView = itemView.findViewById(R.id.listtext_isbn);
+            urlView = itemView.findViewById(R.id.listtext_url);
+            bookProfileImageView = itemView.findViewById(R.id.listimage_book);
         }
 
         void bind(Context context, final Book book, final OnBookClickListener bookClickListener, final OnBookLongClickListener bookLongClickListener) {

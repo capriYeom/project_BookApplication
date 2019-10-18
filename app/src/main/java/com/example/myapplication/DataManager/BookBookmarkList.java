@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class BookBookmarkList {
+
     private static BookBookmarkList sInstance;
     private List<Book> mBookList;
 
@@ -21,7 +22,6 @@ public class BookBookmarkList {
         if (sInstance == null) {
             sInstance = new BookBookmarkList();
         }
-
         return sInstance;
     }
 
@@ -42,7 +42,7 @@ public class BookBookmarkList {
         }
     }
 
-    public void sortBookmark(BookSortType type) {
+    private void sortBookmark(BookSortType type) {
         switch (type) {
             case NAME:
                 sortByName();
@@ -74,13 +74,7 @@ public class BookBookmarkList {
         Collections.sort(mBookList, new Comparator<Book>() {
             @Override
             public int compare(Book o1, Book o2) {
-                if (o1.getRating() > o2.getRating()) {
-                    return 1;
-                } else if (o1.getRating() < o2.getRating()) {
-                    return -1;
-                } else {
-                    return 0;
-                }
+                return o1.getRating().compareTo(o2.getRating());
             }
         });
     }

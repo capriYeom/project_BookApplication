@@ -26,7 +26,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        mSpinner = (Spinner) findViewById(R.id.spinner_bookmark_sort);
+        mSpinner = findViewById(R.id.spinner_bookmark_sort);
 
         mSpinner.setOnItemSelectedListener(this);
 

@@ -35,8 +35,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_setting) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
+    }
+
     private void initViewPager() {
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        mViewPager = findViewById(R.id.viewPager);
 
         BookPagerAdapter pagerAdapter = new BookPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         pagerAdapter.addFragment(new NewBookFragment());
@@ -45,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(new HistoryFragment());
         mViewPager.setAdapter(pagerAdapter);
 
-        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        mTabLayout = findViewById(R.id.tabLayout);
         mTabLayout.addTab(mTabLayout.newTab().setText("NEW"));
         mTabLayout.addTab(mTabLayout.newTab().setText("SEARCH"));
         mTabLayout.addTab(mTabLayout.newTab().setText("BOOKMARK"));
@@ -71,21 +87,5 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_setting) {
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return false;
     }
 }

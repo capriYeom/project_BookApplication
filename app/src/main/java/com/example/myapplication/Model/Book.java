@@ -17,8 +17,6 @@ public class Book {
     private String image;
     private String url;
 
-    private boolean isBookmarked;
-
     public Book() {}
 
     public String getTitle() {
@@ -77,60 +75,59 @@ public class Book {
         return url;
     }
 
-    public void setIsbn13(Long isbn13) {
+    private void setIsbn13(Long isbn13) {
         this.isbn13 = isbn13;
     }
 
-    public void setTitle(String title) {
+    private void setTitle(String title) {
         this.title = title;
     }
 
-    public void setSubtitle(String subtitle) {
+    private void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
     }
 
-    public void setAuthors(String authors) {
+    private void setAuthors(String authors) {
         this.authors = authors;
     }
 
-    public void setPublisher(String publisher) {
+    private void setPublisher(String publisher) {
         this.publisher = publisher;
     }
 
-    public void setLanguage(String language) {
+    private void setLanguage(String language) {
         this.language = language;
     }
 
-    public void setIsbn10(Integer isbn10) {
+    private void setIsbn10(Integer isbn10) {
         this.isbn10 = isbn10;
     }
 
-    public void setPages(Integer pages) {
+    private void setPages(Integer pages) {
         this.pages = pages;
     }
 
-    public void setYear(Integer year) {
+    private void setYear(Integer year) {
         this.year = year;
     }
 
-    public void setRating(Integer rating) {
+    private void setRating(Integer rating) {
         this.rating = rating;
     }
 
-    public void setDesc(String desc) {
+    private void setDesc(String desc) {
         this.desc = desc;
     }
 
-    public void setPrice(String price) {
+    private void setPrice(String price) {
         this.price = price;
     }
 
-    public void setImage(String image) {
+    private void setImage(String image) {
         this.image = image;
     }
 
-    public void setUrl(String url) {
+    private void setUrl(String url) {
         this.url = url;
     }
-
 }

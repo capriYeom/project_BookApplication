@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,14 +24,14 @@ import java.util.List;
 
 public class NewBookFragment extends Fragment {
 
-    RecyclerView mRecyclerView;
-    BookAdapter mAdapter;
+    private RecyclerView mRecyclerView;
+    private BookAdapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_newbook, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.process_list);
+        mRecyclerView = view.findViewById(R.id.process_list);
         return view;
     }
 
@@ -46,7 +45,6 @@ public class NewBookFragment extends Fragment {
     private void setFragmentEnvironment() {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mAdapter = new BookAdapter(getContext());
         mAdapter.setBookClickListener(new BookAdapter.OnBookClickListener() {
             @Override

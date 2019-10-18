@@ -19,7 +19,7 @@ public class Memo {
         this.memo = memo;
     }
 
-    public Long getBookNum() {
+    Long getBookNum() {
         return bookNum;
     }
 

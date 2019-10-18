@@ -26,15 +26,14 @@ import java.util.List;
 
 public class BookmarkFragment extends Fragment {
 
-    RecyclerView mRecyclerView;
-    BookAdapter mAdapter;
-    List<Book> mBookList;
+    private RecyclerView mRecyclerView;
+    private BookAdapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bookmark, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.process_list);
+        mRecyclerView = view.findViewById(R.id.process_list);
         return view;
     }
 
@@ -47,14 +46,13 @@ public class BookmarkFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mBookList = BookBookmarkList.getInstance().getBookList();
+        List<Book> mBookList = BookBookmarkList.getInstance().getBookList();
         mAdapter.setBookList(mBookList);
     }
 
     private void setFragmentEnvironment() {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mAdapter = new BookAdapter(getContext());
         setUpBookAdapter();
         mRecyclerView.setAdapter(mAdapter);

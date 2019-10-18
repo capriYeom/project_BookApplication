@@ -31,7 +31,6 @@ public class BookDetailActivity extends AppCompatActivity {
 
     private TextView mTitleText, mSubtitleText, mPriceText, mRatingText, mAuthorsText, mPublisherText, mPublishedText, mPageText, mLanguageText, mIsbn10Text, mIsbn13Text, mDescriptionText, mUrlText;
     private ImageView mProfileImageView;
-
     private Button mBookmarkButton , mMemoButton;
 
     @Override
@@ -94,24 +93,24 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mTitleText = (TextView) findViewById(R.id.textview_title);
-        mSubtitleText = (TextView) findViewById(R.id.textview_subtitle);
-        mPriceText = (TextView) findViewById(R.id.textview_price);
-        mRatingText = (TextView) findViewById(R.id.textview_rating);
-        mAuthorsText = (TextView) findViewById(R.id.textview_author);
-        mPublisherText = (TextView) findViewById(R.id.textview_publisher);
-        mPublishedText = (TextView) findViewById(R.id.textview_published);
-        mPageText = (TextView) findViewById(R.id.textview_page);
-        mLanguageText = (TextView) findViewById(R.id.textview_language);
-        mIsbn10Text = (TextView) findViewById(R.id.textview_isbn10);
-        mIsbn13Text = (TextView) findViewById(R.id.textview_isbn13);
-        mDescriptionText = (TextView) findViewById(R.id.textview_description);
-        mUrlText = (TextView) findViewById(R.id.textView_url);
+        mTitleText = findViewById(R.id.textview_title);
+        mSubtitleText = findViewById(R.id.textview_subtitle);
+        mPriceText = findViewById(R.id.textview_price);
+        mRatingText = findViewById(R.id.textview_rating);
+        mAuthorsText = findViewById(R.id.textview_author);
+        mPublisherText = findViewById(R.id.textview_publisher);
+        mPublishedText = findViewById(R.id.textview_published);
+        mPageText = findViewById(R.id.textview_page);
+        mLanguageText = findViewById(R.id.textview_language);
+        mIsbn10Text = findViewById(R.id.textview_isbn10);
+        mIsbn13Text = findViewById(R.id.textview_isbn13);
+        mDescriptionText = findViewById(R.id.textview_description);
+        mUrlText = findViewById(R.id.textView_url);
 
-        mProfileImageView = (ImageView) findViewById(R.id.imageview_bookprofile);
+        mProfileImageView = findViewById(R.id.imageview_bookprofile);
 
-        mBookmarkButton = (Button) findViewById(R.id.button_bookmark);
-        mMemoButton = (Button) findViewById(R.id.button_memo);
+        mBookmarkButton = findViewById(R.id.button_bookmark);
+        mMemoButton = findViewById(R.id.button_memo);
     }
 
     private void setBookDetail(Book book) {
@@ -184,6 +183,7 @@ public class BookDetailActivity extends AppCompatActivity {
 
         builder.create().show();
     }
+
     private void getMemo() {
         DatabaseWrapper.getInstance(BookDetailActivity.this).getBookMemo(currentBook.getIsbn13(), new DatabaseWrapper.GetMemoHandler() {
             @Override
