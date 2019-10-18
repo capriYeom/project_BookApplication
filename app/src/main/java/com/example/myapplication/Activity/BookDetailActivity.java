@@ -149,7 +149,7 @@ public class BookDetailActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         if (memoText.getText().toString().length() > 0) {
                             Memo memo = new Memo(currentBook.getIsbn13(), memoText.getText().toString());
-                            if (isMemoed()) {
+                            if (isMemo()) {
                                 DatabaseWrapper.getInstance(BookDetailActivity.this).updateBookMemo(currentBook.getIsbn13(), memoText.getText().toString());
                             } else {
 
@@ -169,7 +169,7 @@ public class BookDetailActivity extends AppCompatActivity {
                     }
                 });
 
-        if (isMemoed()) {
+        if (isMemo()) {
             memoText.setText(currentMemo.getMemo());
             builder.setNeutralButton("CLEAR", new DialogInterface.OnClickListener() {
                 @Override
@@ -192,7 +192,7 @@ public class BookDetailActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isMemoed() {
+    private boolean isMemo() {
         return currentMemo != null && currentMemo.getMemo().length() > 0;
     }
 }
