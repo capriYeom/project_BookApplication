@@ -83,7 +83,6 @@ public class BookDetailActivity extends AppCompatActivity {
 
         mBookmarkButton.setEnabled(false);
         mMemoButton.setEnabled(false);
-
     }
 
     @Override
@@ -196,5 +195,4 @@ public class BookDetailActivity extends AppCompatActivity {
     private boolean isMemoed() {
         return currentMemo != null && currentMemo.getMemo().length() > 0;
     }
-
 }
