@@ -53,6 +53,9 @@ public class BookmarkSaver {
             case PRICE:
                 sortByPrice();
                 break;
+            case ISBN:
+                sortByISBN();
+                break;
             default:
                 break;
         }
@@ -78,6 +81,15 @@ public class BookmarkSaver {
                 } else {
                     return 0;
                 }
+            }
+        });
+    }
+
+    private void sortByISBN() {
+        Collections.sort(mBookList, new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                return o1.getIsbn13().compareTo(o2.getIsbn13());
             }
         });
     }

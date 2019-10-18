@@ -33,6 +33,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         mCategory.add(BookSortType.RATING);
         mCategory.add(BookSortType.PRICE);
         mCategory.add(BookSortType.NAME);
+        mCategory.add(BookSortType.ISBN);
 
         ArrayAdapter<BookSortType> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mCategory);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
