@@ -25,6 +25,7 @@ import com.example.myapplication.Retrofit.RetrofitConnector;
 import com.example.myapplication.Retrofit.RetrofitException;
 import com.example.myapplication.utils.PreferenceUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchBookFragment extends Fragment {
@@ -33,6 +34,7 @@ public class SearchBookFragment extends Fragment {
     BookAdapter mAdapter;
     EditText mEditText;
     Button mButton;
+    List<Book> mInitialBookList = new ArrayList<>();
 
     String mCurrentKeyword;
     boolean isLoading = false;
@@ -72,6 +74,9 @@ public class SearchBookFragment extends Fragment {
         super.onResume();
         if (PreferenceUtils.getHistory() != null && PreferenceUtils.getHistory().length() > 0) {
             mEditText.setText(PreferenceUtils.getHistory());
+        }
+        if (!mInitialBookList.isEmpty()) {
+            mAdapter.setBookList(mInitialBookList);
         }
     }
 
@@ -113,6 +118,7 @@ public class SearchBookFragment extends Fragment {
                 for (Book book : bookList) {
                     mAdapter.addLast(book);
                 }
+                mInitialBookList.addAll(bookList);
                 isLoading = false;
             }
         });
@@ -130,6 +136,7 @@ public class SearchBookFragment extends Fragment {
                 if (bookList.size() <= 0) {
                     Toast.makeText(getContext(), "No Result.", Toast.LENGTH_SHORT).show();
                 }
+                mInitialBookList = bookList;
                 mAdapter.setBookList(bookList);
             }
         });
