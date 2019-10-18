@@ -41,8 +41,10 @@ public class PreferenceUtils {
 
     public static BookSortType getSortType() {
         String sortTypeString = getSharedPreferences().getString(PREFERNECE_KEY_SORT_TYPE, "");
-        BookSortType type = BookSortType.valueOf(sortTypeString);
-        return type;
+        if (sortTypeString != null) {
+            return BookSortType.RATING;
+        }
+        return BookSortType.valueOf(sortTypeString);
     }
 
     public static void clearAll() {
