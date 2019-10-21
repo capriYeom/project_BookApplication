@@ -7,7 +7,7 @@ import com.example.myapplication.Model.BookSortType;
 
 public class PreferenceUtils {
     private static final String PREFERENCE_KEY_SEARCH_HISTORY = "history";
-    private static final String PREFERNECE_KEY_SORT_TYPE = "sort";
+    private static final String PREFERENCE_KEY_SORT_TYPE = "sort";
 
     private static Context mAppContext;
 
@@ -36,11 +36,11 @@ public class PreferenceUtils {
 
         String sortTypeString = sortType.name();
 
-        editor.putString(PREFERNECE_KEY_SORT_TYPE, sortTypeString).apply();
+        editor.putString(PREFERENCE_KEY_SORT_TYPE, sortTypeString).apply();
     }
 
     public static BookSortType getSortType() {
-        String sortTypeString = getSharedPreferences().getString(PREFERNECE_KEY_SORT_TYPE, "");
+        String sortTypeString = getSharedPreferences().getString(PREFERENCE_KEY_SORT_TYPE, "");
         if (sortTypeString == null) {
             return BookSortType.RATING;
         }

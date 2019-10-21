@@ -42,66 +42,9 @@ public class BookBookmarkList {
         }
     }
 
-    private void sortBookmark(BookSortType type) {
-        switch (type) {
-            case NAME:
-                sortByName();
-                break;
-            case RATING:
-                sortByRating();
-                break;
-            case PRICE:
-                sortByPrice();
-                break;
-            case ISBN:
-                sortByISBN();
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void sortByName() {
-        Collections.sort(mBookList, new Comparator<Book>() {
-            @Override
-            public int compare(Book o1, Book o2) {
-                return o1.getTitle().compareTo(o2.getTitle());
-            }
-        });
-    }
-
-    private void sortByRating() {
-        Collections.sort(mBookList, new Comparator<Book>() {
-            @Override
-            public int compare(Book o1, Book o2) {
-                return o1.getRating().compareTo(o2.getRating());
-            }
-        });
-    }
-
-    private void sortByISBN() {
-        Collections.sort(mBookList, new Comparator<Book>() {
-            @Override
-            public int compare(Book o1, Book o2) {
-                return o1.getIsbn13().compareTo(o2.getIsbn13());
-            }
-        });
-    }
-
-    private void sortByPrice() {
-        Collections.sort(mBookList, new Comparator<Book>() {
-            @Override
-            public int compare(Book o1, Book o2) {
-                float o1Price = Float.parseFloat(o1.getPrice().substring(1));
-                float o2Price = Float.parseFloat(o2.getPrice().substring(1));
-                return Float.compare(o1Price, o2Price);
-            }
-        });
-    }
-
     public List<Book> getBookList() {
         if (PreferenceUtils.getSortType() != null) {
-            sortBookmark(PreferenceUtils.getSortType());
+            DataSorter.sortBookmark(PreferenceUtils.getSortType(), mBookList);
         }
         return mBookList;
     }

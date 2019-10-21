@@ -27,7 +27,6 @@ public class DatabaseWrapper {
             @Override
             public void run() {
                 if (handler != null) {
-                    Log.d("BOOK", "run: getBOOKMEMO");
                    handler.onResult(bookMemoDao().getMemo(bookNum));
                 }
             }
@@ -38,7 +37,6 @@ public class DatabaseWrapper {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("BOOK", "run: addBOOKMEMO");
                 bookMemoDao().insert(memo);
             }
         }).start();

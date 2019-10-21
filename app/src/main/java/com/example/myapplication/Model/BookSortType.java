@@ -1,5 +1,5 @@
 package com.example.myapplication.Model;
 
 public enum BookSortType {
-    RATING, NAME, PRICE, ISBN;
+    RATING, NAME, PRICE, ISBN
 }
