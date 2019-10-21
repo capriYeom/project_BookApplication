@@ -23,15 +23,7 @@ public class Memo {
         return bookNum;
     }
 
-    public void setBookNum(Long bookNum) {
-        this.bookNum = bookNum;
-    }
-
     public String getMemo() {
         return memo;
-    }
-
-    public void setMemo(String memo) {
-        this.memo = memo;
     }
 }
