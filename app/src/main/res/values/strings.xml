@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <!-- Application Feature -->
+    <string name="book_bookmark">BOOKMARK</string>
+    <string name="book_unbookmark">DELETE BOOKMARK</string>
+
+    <!-- Book Detail -->
+    <string name="book_title">%s</string>
+    <string name="book_subtitle">%s</string>
+    <string name="book_price">PRICE : %s</string>
+    <string name="book_rating">RATING : %d</string>
+    <string name="book_authors">AUTHORS : %s</string>
+    <string name="book_publisher">PUBLISHER : %s</string>
+    <string name="book_year">PUBLISHED : %d</string>
+    <string name="book_page">PAGE : %d</string>
+    <string name="book_language">LANGUAGE : %s</string>
+    <string name="book_isbn10">ISBN10 : %d</string>
+    <string name="book_isbn13">ISBN13 : %d</string>
+    <string name="book_description">%s</string>
+    <string name="book_url">%s</string>
+
+    <!-- book Sort type -->
+    <string name="sort_type_prompt">Choose a Sort type</string>
+
+    <string-array name="sort_type">
+        <item>RATING</item>
+        <item>NAME</item>
+        <item>PRICE</item>
+    </string-array>
 </resources>
